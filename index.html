@@ -1,0 +1,23 @@
+<script>if (typeof module === 'object') {window.module = module; module = undefined}</script>
+<script src="./jquery.js" type="text/javascript"></script>
+<script src="./jquery-ui.js" type="text/javascript"></script>
+<script src="./bowser.js" type="text/javascript"></script>
+<script src="./fake_window.js" type="text/javascript"></script>
+<script>if (window.module) module = window.module;</script>
+<button id="win">open</button><br />
+<input id="url" placeholder="https://google.com/?igu=1"/>
+<script type="text/javascript">
+    let clicked = 0
+    let windowUrl = "https://google.com/?igu=1"
+    let domain = windowUrl.split("/")[2]
+    let domain_params
+    if (windowUrl.split("/")[3] != undefined) domain_params = "/" + windowUrl.split("/")[3]
+    document.getElementById("url").onblur = function() {
+        windowUrl = document.getElementById("url").value
+        domain = windowUrl.split("/")[2]
+        if (windowUrl.split("/")[3] != undefined) domain_params = "/" + windowUrl.split("/")[3]
+    }
+    let win = new FakeWindow()
+    win.bind(['a', 'button'])
+    win.init()
+</script>
