@@ -8,15 +8,14 @@
 <script type="text/javascript">
     let clicked = 0
     let windowUrl = "https://google.com/?igu=1"
-    let domain = windowUrl.split("/")[2]
+    let domain = windowUrl.split("/")[2] // this is simply anything between https:// and the slash after the domain name.
     let domain_params
-    if (windowUrl.split("/")[3] != undefined) domain_params = "/" + windowUrl.split("/")[3]
-    document.getElementById("url").onblur = function() {
+    if (windowUrl.split("/")[3] != undefined) domain_params = "/" + windowUrl.split("/")[3] // anything after the TLD is the GOAL, however at the moment i never actually implemented anything beyond the first / sooo kinda broken. TODO implement full url path.
+    document.getElementById("url").onblur = function() { // simply redefines the variables when the user changes them.
         windowUrl = document.getElementById("url").value
         domain = windowUrl.split("/")[2]
         if (windowUrl.split("/")[3] != undefined) domain_params = "/" + windowUrl.split("/")[3]
     }
-    let win = new FakeWindow()
-    win.bind(['a', 'button'])
+    let win = new FakeWindow() // FakeWindow is the class used to generate these fake windows.
     win.init()
 </script>
